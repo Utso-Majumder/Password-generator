@@ -25,6 +25,7 @@ def passwordGen(m2, m1):
             e.append(choice(ascii_uppercase))
             e.append(choice(ascii_lowercase))
             e.append(choice(spec))
+    shuffle(e)
     return e
 
 m1 = int(input("Enter maximum length of password : "))
@@ -34,6 +35,9 @@ if m2<6:
     print("Default minimum length must be 6!")
 else:
     g = passwordGen(m2,m1)
-g = ''.join(g)
-print("Recommended password :", end=" ")
 print(g)
+for i in range(len(g)-1,0,-1):
+    j = randint(0,i+1)
+    g[i],g[j]=g[j],g[i]
+g = ''.join(g)
+print("Recommended password :", g)              #prints double-shuffled generation
